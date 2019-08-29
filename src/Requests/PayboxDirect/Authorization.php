@@ -153,17 +153,17 @@ class Authorization extends DirectRequest
         ];
 
         if ( ! empty($this->_3DSecure)) {
-            $params = $params + array_filter([
-                    DirectQuestionField::_3D_SECURE_ID3D => $this->_3DSecure['ID3D'] ?? null,
-                    DirectQuestionField::_3D_SECURE_3DCAVV => $this->_3DSecure['3DCAVV'] ?? null,
-                    DirectQuestionField::_3D_SECURE_3DCAVVALGO => $this->_3DSecure['3DCAVVALGO'] ?? null,
-                    DirectQuestionField::_3D_SECURE_3DECI => $this->_3DSecure['3DECI'] ?? null,
-                    DirectQuestionField::_3D_SECURE_3DENROLLED => $this->_3DSecure['3DENROLLED'] ?? null,
-                    DirectQuestionField::_3D_SECURE_3DERROR => $this->_3DSecure['3DERROR'] ?? null,
-                    DirectQuestionField::_3D_SECURE_3DSIGNVAL => $this->_3DSecure['3DSIGNVAL'] ?? null,
-                    DirectQuestionField::_3D_SECURE_3DSTATUS => $this->_3DSecure['3DSTATUS'] ?? null,
-                    DirectQuestionField::_3D_SECURE_3DXID => $this->_3DSecure['3DXID'] ?? null,
-                ]);
+            $params = array_merge($params, array_filter([
+                DirectQuestionField::_3D_SECURE_ID3D => ! empty($this->_3DSecure['ID3D']) ? $this->_3DSecure['ID3D'] : null,
+                DirectQuestionField::_3D_SECURE_3DCAVV => ! empty($this->_3DSecure['3DCAVV']) ? $this->_3DSecure['3DCAVV'] : null,
+                DirectQuestionField::_3D_SECURE_3DCAVVALGO => ! empty($this->_3DSecure['3DCAVVALGO']) ? $this->_3DSecure['3DCAVVALGO'] : null,
+                DirectQuestionField::_3D_SECURE_3DECI => ! empty($this->_3DSecure['3DECI']) ? $this->_3DSecure['3DECI'] : null,
+                DirectQuestionField::_3D_SECURE_3DENROLLED => ! empty($this->_3DSecure['3DENROLLED']) ? $this->_3DSecure['3DENROLLED'] : null,
+                DirectQuestionField::_3D_SECURE_3DERROR => ! empty($this->_3DSecure['3DERROR']) ? $this->_3DSecure['3DERROR'] : null,
+                DirectQuestionField::_3D_SECURE_3DSIGNVAL => ! empty($this->_3DSecure['3DSIGNVAL']) ? $this->_3DSecure['3DSIGNVAL'] : null,
+                DirectQuestionField::_3D_SECURE_3DSTATUS => ! empty($this->_3DSecure['3DSTATUS']) ? $this->_3DSecure['3DSTATUS'] : null,
+                DirectQuestionField::_3D_SECURE_3DXID => ! empty($this->_3DSecure['3DXID']) ? $this->_3DSecure['3DXID'] : null,
+            ]));
         }
 
         return $params;
